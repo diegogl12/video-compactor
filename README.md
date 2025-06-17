@@ -1,5 +1,4 @@
-# :hamburger: Food Order Produção
-![FoodOrder](foodorder.png?raw=true "FoodOrder")
+# :movie: Video Compactor
 
 ## :pencil: Descrição do Projeto
 <p align="left">Este projeto tem como objetivo concluir as  entregas do Tech Challenge do curso de Software Architecture da Pós Graduação da FIAP 2024/2025.
