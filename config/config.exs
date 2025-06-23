@@ -1,7 +1,7 @@
 import Config
 
 config :video_compactor, :api,
-  port: System.get_env("VIDEO_COMPACTOR_ENDPOINT_PORT", "4002") |> String.to_integer()
+  port: System.get_env("VIDEO_COMPACTOR_ENDPOINT_PORT", "4000") |> String.to_integer()
 
 config :tesla, adapter: {Tesla.Adapter.Hackney, [recv_timeout: 15_000]}
 

@@ -25,13 +25,23 @@ services:
         aliases:
         - localstack
 
-  database:
-    image: postgres:15
-    container_name: video_compactor_database
-    environment:
-      - POSTGRES_PASSWORD=postgres
+  mongo_database:
+    image: mongo:latest
+    container_name: mongo_database
     ports:
-      - "5432:5432"
+      - "27017:27017"
+    volumes:
+      - ./video-compactor/init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh
+      - ./video-compactor/init.js:/docker-entrypoint-initdb.d/init.js
+    environment:
+        - MONGO_INITDB_DATABASE=video_compactor
+    command: mongod --bind_ip_all
+    healthcheck:
+      test: ["CMD-SHELL", "mongosh --eval 'db.adminCommand(\"ping\")' --quiet"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
     networks:
       - video-compactor-network
 
@@ -50,8 +60,10 @@ services:
     depends_on:
       localstack:
         condition: service_healthy
-      database:
+      mongo_database:
         condition: service_started
+    volumes:
+      - ./tmp:/tmp
     networks:
       video-compactor-network:
         aliases:
