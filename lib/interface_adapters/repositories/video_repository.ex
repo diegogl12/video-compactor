@@ -45,7 +45,7 @@ defmodule VideoCompactor.InterfaceAdapters.Repositories.VideoRepository do
   defp to_video(video_schema) do
     %Video{
       id: Map.get(video_schema, :id),
-      file_path: Map.get(video_schema, :file_path)
+      zip_path: Map.get(video_schema, :zip_path)
     }
   end
 end

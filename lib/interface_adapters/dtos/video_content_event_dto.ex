@@ -29,11 +29,11 @@ defmodule VideoCompactor.InterfaceAdapters.DTOs.VideoContentEventDTO do
     |> from_map()
   end
 
-  def to_domain(%__MODULE__{} = dto, file_path) do
+  def to_domain(%__MODULE__{} = dto, temp_file_path) do
     {:ok,
      %Video{
        id: dto.video_id,
-       file_path: file_path,
+       temp_file_path: temp_file_path,
        extension: dto.extension
      }}
   end

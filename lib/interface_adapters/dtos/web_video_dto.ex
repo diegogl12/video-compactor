@@ -1,11 +1,11 @@
 defmodule VideoCompactor.InterfaceAdapters.DTOs.WebVideoDTO do
   alias VideoCompactor.Domain.Entities.Video
 
-  defstruct [:id, :file_path]
+  defstruct [:id, :zip_path]
 
   @type t :: %__MODULE__{
           id: String.t(),
-          file_path: String.t()
+          zip_path: String.t()
         }
 
   @callback from_map(map()) :: {:ok, t()} | {:error, String.t()}
@@ -19,7 +19,7 @@ defmodule VideoCompactor.InterfaceAdapters.DTOs.WebVideoDTO do
 
     result = %__MODULE__{
       id: Map.get(map_with_atoms, :id),
-      file_path: Map.get(map_with_atoms, :file_path)
+      zip_path: Map.get(map_with_atoms, :zip_path)
     }
 
     {:ok, result}
@@ -29,7 +29,7 @@ defmodule VideoCompactor.InterfaceAdapters.DTOs.WebVideoDTO do
   def to_domain(%__MODULE__{} = dto) do
     result = %Video{
       id: dto.id,
-      file_path: dto.file_path
+      zip_path: dto.zip_path
     }
 
     {:ok, result}

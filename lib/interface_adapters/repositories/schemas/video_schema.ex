@@ -4,11 +4,11 @@ defmodule VideoCompactor.InterfaceAdapters.Repositories.Schemas.VideoSchema do
 
     collection :videos do
         attribute :id, Binary.t()
-        attribute :file_path, :string
+        attribute :zip_path, :string
     end
 
     def new(video) do
         Map.put(new(), :id, video.id)
-        |> Map.put(:file_path, video.file_path)
+        |> Map.put(:zip_path, video.zip_path)
     end
 end
