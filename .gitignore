@@ -2,3 +2,4 @@ _build/*
 deps/*
 tmp/*
 *.env
+mix.lock

@@ -69,6 +69,21 @@ services:
         aliases:
           - video_compactor
     dns_search: .
+  
+  mock_video_manager:
+    image: mock_video_manager
+    container_name: mock_video_manager
+    hostname: mock_video_manager
+    ports:
+      - "4001:4001"
+    build:
+      context: ../mock_server
+      dockerfile: Dockerfile
+    networks:
+      video-compactor-network:
+        aliases:
+          - mock_video_manager
+    
 
 networks:
   video-compactor-network:
