@@ -1,6 +1,7 @@
-defmodule VideoCompactor.InterfaceAdapters.DTOs.WebVideoDTO do
+defmodule VideoCompactor.InterfaceAdapters.DTOs.WebVideoResponseDTO do
   alias VideoCompactor.Domain.Entities.Video
 
+  @derive Jason.Encoder
   defstruct [:id, :zip_path]
 
   @type t :: %__MODULE__{
@@ -25,11 +26,11 @@ defmodule VideoCompactor.InterfaceAdapters.DTOs.WebVideoDTO do
     {:ok, result}
   end
 
-  @callback to_domain(t()) :: {:ok, Video.t()}
-  def to_domain(%__MODULE__{} = dto) do
-    result = %Video{
-      id: dto.id,
-      zip_path: dto.zip_path
+  @callback from_domain(Video.t()) :: {:ok, t()}
+  def from_domain(%Video{} = video) do
+    result = %__MODULE__{
+      id: video.id,
+      zip_path: video.zip_path
     }
 
     {:ok, result}

@@ -1,17 +1,15 @@
 defmodule VideoCompactor.InterfaceAdapters.Controllers.VideoController do
   require Logger
-  alias VideoCompactor.InterfaceAdapters.DTOs.VideoContentEventDTO
-  alias VideoCompactor.InterfaceAdapters.DTOs.WebVideoDTO
+  alias VideoCompactor.InterfaceAdapters.DTOs.{VideoContentEventDTO, WebVideoResponseDTO}
   alias VideoCompactor.InterfaceAdapters.Gateways.Clients.VideoManager, as: VideoManagerClient
   alias VideoCompactor.InterfaceAdapters.Repositories.VideoRepository
-  alias VideoCompactor.UseCases.GetVideo
   alias VideoCompactor.UseCases.VideoCompactor
 
   def get_video_info(video_id) do
     Logger.info("Getting video info with id: #{inspect(video_id)}")
 
-    with {:ok, video} <- GetVideo.get_video(video_id),
-         {:ok, video_info} <- WebVideoDTO.from_map(video) do
+    with {:ok, video} <- VideoRepository.get_by_id(video_id),
+         {:ok, video_info} <- WebVideoResponseDTO.from_domain(video) do
       {:ok, video_info}
     else
       error ->
