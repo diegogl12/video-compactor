@@ -1,5 +1,5 @@
 # 📹: Video Compactor
-![VideoManagerCompactor](video-manager-compactor.GIF?raw=true "VideoManagerCompactor")
+![VideoManagerCompactor](video.png?raw=true "VideoManagerCompactor")
 
 ## :pencil: Descrição do Projeto
 <p align="left">Este projeto tem como objetivo concluir a entrega do Hackaton do curso de Software Architecture da Pós Graduação da FIAP 2024/2025.
