@@ -4,7 +4,7 @@ services:
     container_name: localstack
     hostname: localstack
     environment:
-      - SERVICES=sqs
+      - SERVICES=sqs,s3
       - HOSTNAME_EXTERNAL=localstack
     env_file:
       - .env
