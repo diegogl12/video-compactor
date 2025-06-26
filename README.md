@@ -1,7 +1,8 @@
-# :movie: Video Compactor
+# 📹: Video Compactor
+![VideoManagerCompactor](video-manager-compactor.GIF?raw=true "VideoManagerCompactor")
 
 ## :pencil: Descrição do Projeto
-<p align="left">Este projeto tem como objetivo concluir as  entregas do Tech Challenge do curso de Software Architecture da Pós Graduação da FIAP 2024/2025.
+<p align="left">Este projeto tem como objetivo concluir a entrega do Hackaton do curso de Software Architecture da Pós Graduação da FIAP 2024/2025.
 Este repositório constrói um serviço que faz parte de uma arquitetura de microsserviços.</p>
 
 ## 📊 Code Coverage
@@ -16,21 +17,20 @@ Este repositório constrói um serviço que faz parte de uma arquitetura de micr
 - Mensageria: SQS
 
 ### :hammer: Detalhes desse serviço
-Este serviço cuida do domínio de produção, recebendo por mensageria, o evento que inicia a requisição de produção. Este evento vem do início de produção de um pedido do serviço Pedidos.
-Além disso, expõe um endpoint para atualizar o status de produção, que, consequentemente, atualiza o status do pedido no serviço Pedidos. 
+Este serviço faz: 
+ - O consumo via mensageria SQS da informação (id, caminho do S3) do video à ser compactado;
+ - Compacta e mantém em memória o video;
+ - Notifica o Fiap-Video-Manager sobre o status (compactado com sucesso ou com erro);
+ - Mantém no seu banco de dados o arquivo
 
 ### :hammer_and_wrench: Execução do projeto
-1. Faça o clone do projeto: ```git clone git@github.com:diegogl12/food-order-producao.git```
+1. Faça o clone do projeto: ``` ```
 2. Rode o comando do docker-compose na raiz do projeto: ```make up```
-4. Acessar o arquivo de endpoints.exs para descobrir os endpoints: ```https://github.com/diegogl12/food-order-producao/blob/main/lib/infra/web/endpoints.ex```
-5. Popular mensagem no SQS local: ```make create_message```
+
 
 ### 🗄️ Outros repos do microserviço dessa arquitetura
-- [Food Order Produção](https://github.com/diegogl12/food-order-producao)
-- [Food Order Pagamento](https://github.com/diegogl12/food-order-pagamento)
-- [Food Order Cardápio](https://github.com/RafaelKamada/foodorder-cardapio)
-- [Food Order Pedidos](https://github.com/vilacalima/food-order-pedidos)
-- [Food Order Usuários](https://github.com/RafaelKamada/FoodOrder)
+- [Fiap Video Manager](https://github.com/RafaelKamada/fiap-video-manager)
+
 
 ### :page_with_curl: Documentações
 - [Miro (todo planejamento do projeto)](https://miro.com/app/board/uXjVKhyEAME=/)
