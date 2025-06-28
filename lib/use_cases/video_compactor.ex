@@ -2,19 +2,29 @@ defmodule VideoCompactor.UseCases.VideoCompactor do
   require Logger
   alias VideoCompactor.Domain.Entities.Video
 
-  @zip_path "/tmp/zip"
-  @tmp_path "/tmp"
+  @zip_local_path "./zip"
+  @tmp_local_path "./tmp"
 
   @status_compacted "COMPACTED"
   @status_error "ERROR"
 
-  def run(%Video{} = video, repository, video_manager) do
-    with charlist_path <- String.to_charlist("#{@tmp_path}/#{video.temp_file_path}"),
-         {:ok, zip_path} <- :zip.create("#{@zip_path}/#{video.id}.zip", [charlist_path]),
-         video <- %{video | zip_path: zip_path},
-         {:ok, _} <- repository.create(video),
-         :ok <- video_manager.update_status(video, @status_compacted) do
-      Logger.info("Zip path: #{inspect(zip_path)}")
+  def run(%Video{} = video, repository, video_manager, s3_client) do
+    temp_video_file_name = "#{video.id}.#{video.extension}"
+    temp_video_local_path = "#{@tmp_local_path}/#{temp_video_file_name}"
+    temp_zip_local_path = "#{@zip_local_path}/#{video.id}.zip"
+    bucket_zip_path = "zip/#{video.id}.zip"
+
+    with :ok <- s3_client.download_file(video.temp_file_path, temp_video_local_path),
+          charlist_video_file_name <- String.to_charlist(temp_video_file_name),
+          charlist_temp_cwd <- String.to_charlist(@tmp_local_path),
+          {:ok, _} <- :zip.create(temp_zip_local_path, [charlist_video_file_name], cwd: charlist_temp_cwd),
+          :ok <- s3_client.upload_file(bucket_zip_path, temp_zip_local_path),
+          video <- %{video | zip_path: bucket_zip_path},
+          {:ok, _} <- repository.create(video),
+          :ok <- video_manager.update_status(video, @status_compacted),
+          :ok <- File.rm(temp_zip_local_path),
+          :ok <- File.rm(temp_video_local_path) do
+      Logger.info("Zip path: #{inspect(bucket_zip_path)}")
       :ok
     else
       error ->
