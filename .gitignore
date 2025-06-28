@@ -2,4 +2,7 @@ _build/*
 deps/*
 tmp/*
 *.env
+*.mp4
 mix.lock
+.DS_Store
+volume/*

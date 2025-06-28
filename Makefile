@@ -1,4 +1,4 @@
-message := '{"video_id": "1", "content": "test", "extension": "mp4"}'
+message := '{"video_id": "123e4567-e89b-12d3-a456-426614174000", "path": "video/video.mp4", "extension": "mp4"}'
 
 queue_name := video_content
 
@@ -9,6 +9,18 @@ create_message:
   	--message-body $(message)\
   	--region us-east-1 \
   	--profile localstack
+
+upload_video:
+	aws s3 cp ./test.mp4 s3://video-compactor/video/video.mp4 \
+	--endpoint-url http://localhost:4566 \
+	--profile localstack \
+	--region us-east-1
+
+download_video:
+	aws s3 cp s3://video-compactor/zip/123e4567-e89b-12d3-a456-426614174000.zip ./test.zip \
+	--endpoint-url http://localhost:4566 \
+	--profile localstack \
+	--region us-east-1
 
 up:
 	docker-compose down -v
