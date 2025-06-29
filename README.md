@@ -20,6 +20,26 @@ Este repositório constrói um serviço que faz parte de uma arquitetura de micr
 Este serviço faz: 
  - O consumo via mensageria SQS da informação (id, caminho do S3) do video à ser compactado;
  - Compacta e mantém em memória o video;
+ - Notifica o [Fiap Video Manager](https://github.com/RafaelKamada/fiap-video-manager) sobre o status (compactado com sucesso ou com erro);
+ - Mantém no seu banco de dados o arquivo
+
+### :hammer_and_wrench: Execução do projeto
+1. Faça o clone do projeto: ```git@github.com:diegogl12/video-compactor.git```
+2. Rode o comando do docker-compose na raiz do projeto: ```docker-compose up --build -d```
+
+
+### Endpoints Disponíveis
+
+| Método | Endpoint                                | Descrição                                             |
+| ------ | --------------------------------------- | ----------------------------------------------------- |
+| GET    | /api/video/id            | Consulta o video através do ID. |
+=======
+ - Notifica o Fiap-Video-Manager sobre o status (compactado com sucesso ou com erro);
+ - Mantém no seu banco de dados o arquivo
+
+### :hammer_and_wrench: Execução do projeto
+1. Faça o clone do projeto: ```git@github.com:diegogl12/video-compactor.git```
+2. Rode o comando do docker-compose na raiz do projeto: ```docker-compose up --build -d```
  - Notifica o Fiap-Video-Manager sobre o status (compactado com sucesso ou com erro);
  - Mantém no seu banco de dados o arquivo
 
