@@ -2,9 +2,14 @@ name: CI - Build e Testes
 
 on:
   push:
-    branches: [ main, master ]
+    branches: 
+      - main
+      - cicd_fase_5
   pull_request:
-    branches: [ main, master ]
+    branches:
+      - main
+      - cicd_fase_5
+  workflow_dispatch:
 
 jobs:
   build:
@@ -30,7 +35,7 @@ jobs:
       - name: Setup Elixir
         uses: erlef/setup-beam@v1
         with:
-          elixir-version: '1.16.2'
+          elixir-version: '1.18'
           otp-version: '27.0'
 
       - name: Install dependencies

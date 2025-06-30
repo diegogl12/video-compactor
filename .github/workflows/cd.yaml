@@ -15,8 +15,8 @@
 
       - name: Build Docker image
         run: |
-          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/my_app:latest .
+          docker build -t diegogl12/video-compactor:latest .
 
       - name: Push Docker image
         run: |
-          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/my_app:latest
+          docker push diegogl12/video-compactor:latest
