@@ -26,9 +26,20 @@ jobs:
 
       - name: Build Docker image
         run: |
+<<<<<<< HEAD
           docker build -t diegogl12/video-compactor:latest .
 
       - name: Push Docker image
         run: |
           docker push diegogl12/video-compactor:latest
+<<<<<<< HEAD
 
+=======
+=======
+          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/my_app:latest .
+
+      - name: Push Docker image
+        run: |
+          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/my_app:latest
+>>>>>>> c0cc259 (Updating the folder name to workflows)
+>>>>>>> 38b39ee (Rebasing)

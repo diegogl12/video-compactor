@@ -2,6 +2,7 @@ name: Continuous Integration - Build and Tests
 
 on:
   push:
+<<<<<<< HEAD
     branches: 
       - main
       - cicd_fase_5
@@ -10,6 +11,11 @@ on:
       - main
       - cicd_fase_5
   workflow_dispatch:
+=======
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+>>>>>>> c0cc259 (Updating the folder name to workflows)
 
 jobs:
   build:
@@ -35,7 +41,11 @@ jobs:
       - name: Setup Elixir
         uses: erlef/setup-beam@v1
         with:
+<<<<<<< HEAD
           elixir-version: '1.18'
+=======
+          elixir-version: '1.16.2'
+>>>>>>> c0cc259 (Updating the folder name to workflows)
           otp-version: '27.0'
 
       - name: Install dependencies
