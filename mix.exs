@@ -46,7 +46,8 @@ defmodule VideoCompactor.MixProject do
       {:req, "~> 0.4.0"},
       {:tesla, "~> 1.14"},
       {:uuid, "~> 1.1"},
-      {:mongodb_driver, "~> 1.5.0"}
+      {:mongodb_driver, "~> 1.5.0"},
+      {:ffmpex, "~> 0.11.0"}
     ]
   end
 end
