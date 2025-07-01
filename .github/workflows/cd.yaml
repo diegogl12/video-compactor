@@ -1,3 +1,11 @@
+name: Continuous Delivery
+
+on:
+  workflow_run:
+    workflows: ["Continuous Integration - Build and Tests"]
+    types:
+      - completed
+  
   deploy:
     name: Docker Hub Deploy
     needs: build
