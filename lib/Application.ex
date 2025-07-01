@@ -11,11 +11,14 @@ defmodule VideoCompactor.Application do
   end
 
   defp children(:test), do: []
-  defp children(_), do: [
-    {Plug.Cowboy, scheme: :http, plug: VideoCompactor.Infra.Web.Endpoints, options: [port: port()]},
-    {VideoCompactor.Infra.Consumers.Broadway, [queue_name: :video_content]},
-    VideoCompactor.Infra.Repo.Mongo
-  ]
+
+  defp children(_),
+    do: [
+      {Plug.Cowboy,
+       scheme: :http, plug: VideoCompactor.Infra.Web.Endpoints, options: [port: port()]},
+      {VideoCompactor.Infra.Consumers.Broadway, [queue_name: :video_content]},
+      VideoCompactor.Infra.Repo.Mongo
+    ]
 
   defp port, do: Application.get_env(:video_compactor, :api) |> Keyword.get(:port)
 end

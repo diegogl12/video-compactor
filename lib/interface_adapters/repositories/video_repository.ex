@@ -35,8 +35,10 @@ defmodule VideoCompactor.InterfaceAdapters.Repositories.VideoRepository do
     case Mongo.get_by(VideoSchema, %{id: id}) do
       nil ->
         {:error, :not_found}
+
       {:error, error} ->
         {:error, error}
+
       video ->
         {:ok, to_video(video)}
     end

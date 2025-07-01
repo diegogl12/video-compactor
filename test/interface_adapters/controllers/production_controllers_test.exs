@@ -23,11 +23,15 @@ defmodule FoodOrderProducao.InterfaceAdapters.Controllers.ProductionControllerTe
   describe "initialize_production/1" do
     test "successfully initializes production", %{production_json: production_json} do
       EventProductionDTO
-      |> stub(:from_json, fn _ -> {:ok, %EventProductionDTO{order_id: "order-123", status: "PENDING"}} end)
+      |> stub(:from_json, fn _ ->
+        {:ok, %EventProductionDTO{order_id: "order-123", status: "PENDING"}}
+      end)
       |> stub(:to_domain, fn _ -> {:ok, %Production{order_id: "order-123", status: "PENDING"}} end)
 
       InitializeProduction
-      |> stub(:execute, fn _, _ -> {:ok, %Production{order_id: "order-123", status: "PENDING"}} end)
+      |> stub(:execute, fn _, _ ->
+        {:ok, %Production{order_id: "order-123", status: "PENDING"}}
+      end)
 
       assert {:ok, %Production{order_id: "order-123", status: "PENDING"}} =
                ProductionController.initialize_production(production_json)
@@ -37,18 +41,25 @@ defmodule FoodOrderProducao.InterfaceAdapters.Controllers.ProductionControllerTe
       EventProductionDTO
       |> stub(:from_json, fn _ -> {:error, "Invalid event production data"} end)
 
-      assert {:error, "Invalid event production data"} = ProductionController.initialize_production(production_json)
+      assert {:error, "Invalid event production data"} =
+               ProductionController.initialize_production(production_json)
     end
   end
 
   describe "update_production_status/1" do
     test "successfully updates production status", %{production_params: production_params} do
       WebProductionDTO
-      |> stub(:from_map, fn _ -> {:ok, %Production{order_id: "order-123", status: "COMPLETED"}} end)
-      |> stub(:to_domain, fn _ -> {:ok, %Production{order_id: "order-123", status: "COMPLETED"}} end)
+      |> stub(:from_map, fn _ ->
+        {:ok, %Production{order_id: "order-123", status: "COMPLETED"}}
+      end)
+      |> stub(:to_domain, fn _ ->
+        {:ok, %Production{order_id: "order-123", status: "COMPLETED"}}
+      end)
 
       UpdateProductionAndOrderStatus
-      |> stub(:execute, fn _, _, _ -> {:ok, %Production{order_id: "order-123", status: "COMPLETED"}} end)
+      |> stub(:execute, fn _, _, _ ->
+        {:ok, %Production{order_id: "order-123", status: "COMPLETED"}}
+      end)
 
       assert {:ok, %Production{order_id: "order-123", status: "COMPLETED"}} =
                ProductionController.update_production_status(production_params)
@@ -66,7 +77,9 @@ defmodule FoodOrderProducao.InterfaceAdapters.Controllers.ProductionControllerTe
   describe "get_production/1" do
     test "successfully retrieves production" do
       GetProduction
-      |> stub(:execute, fn _, _, _ -> {:ok, %Production{order_id: "order-123", status: "PENDING"}} end)
+      |> stub(:execute, fn _, _, _ ->
+        {:ok, %Production{order_id: "order-123", status: "PENDING"}}
+      end)
 
       assert {:ok, %Production{order_id: "order-123", status: "PENDING"}} =
                ProductionController.get_production("order-123")

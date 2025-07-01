@@ -45,8 +45,7 @@ defmodule VideoCompactor.Infra.Consumers.Broadway do
 
   defp config(),
     do: [
-      access_key_id:
-        Application.get_env(:video_compactor, :aws) |> Keyword.get(:access_key_id),
+      access_key_id: Application.get_env(:video_compactor, :aws) |> Keyword.get(:access_key_id),
       secret_access_key:
         Application.get_env(:video_compactor, :aws) |> Keyword.get(:access_key_id),
       region: Application.get_env(:video_compactor, :aws) |> Keyword.get(:region),

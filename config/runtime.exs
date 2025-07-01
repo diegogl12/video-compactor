@@ -21,5 +21,4 @@ config :ex_aws,
   region: System.get_env("AWS_REGION"),
   http_client: ExAws.Request.Hackney
 
-config :video_compactor, :video_manager,
-  host: System.get_env("VIDEO_MANAGER_HOST")
+config :video_compactor, :video_manager, host: System.get_env("VIDEO_MANAGER_HOST")

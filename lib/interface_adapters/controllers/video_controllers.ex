@@ -25,7 +25,8 @@ defmodule VideoCompactor.InterfaceAdapters.Controllers.VideoController do
 
     with {:ok, event_dto} <- VideoContentEventDTO.from_json(raw_event),
          {:ok, video} <- VideoContentEventDTO.to_domain(event_dto),
-         :ok <- CompactVideo.run(video, VideoRepository, VideoManagerClient, S3Client, FfmpexClient) do
+         :ok <-
+           CompactVideo.run(video, VideoRepository, VideoManagerClient, S3Client, FfmpexClient) do
       Logger.info("Video compacted with id: #{inspect(video.id)}")
       {:ok, %{}}
     else
