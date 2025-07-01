@@ -1,4 +1,4 @@
-defmodule InterfaceAdapters.Gateways.Clients.S3 do
+defmodule VideoCompactor.InterfaceAdapters.Gateways.Clients.S3 do
   @behaviour Domain.Clients.BucketBehaviour
 
   alias ExAws.S3
