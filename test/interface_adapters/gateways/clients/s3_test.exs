@@ -11,8 +11,10 @@ defmodule VideoCompactor.InterfaceAdapters.Gateways.Clients.S3Test do
     test "returns :ok on success" do
       File
       |> stub(:read!, fn _ -> "file-content" end)
+
       ExAws.S3
       |> stub(:put_object, fn _, _, _ -> :put_object end)
+
       ExAws
       |> stub(:request, fn :put_object -> {:ok, %{}} end)
 
@@ -22,8 +24,10 @@ defmodule VideoCompactor.InterfaceAdapters.Gateways.Clients.S3Test do
     test "returns error on failure" do
       File
       |> stub(:read!, fn _ -> "file-content" end)
+
       ExAws.S3
       |> stub(:put_object, fn _, _, _ -> :put_object end)
+
       ExAws
       |> stub(:request, fn :put_object -> {:error, "fail"} end)
 
@@ -35,6 +39,7 @@ defmodule VideoCompactor.InterfaceAdapters.Gateways.Clients.S3Test do
     test "returns :ok on success" do
       ExAws.S3
       |> stub(:download_file, fn _, _, _ -> :download_file end)
+
       ExAws
       |> stub(:request, fn :download_file -> {:ok, %{}} end)
 
@@ -44,6 +49,7 @@ defmodule VideoCompactor.InterfaceAdapters.Gateways.Clients.S3Test do
     test "returns error on failure" do
       ExAws.S3
       |> stub(:download_file, fn _, _, _ -> :download_file end)
+
       ExAws
       |> stub(:request, fn :download_file -> {:error, "fail"} end)
 

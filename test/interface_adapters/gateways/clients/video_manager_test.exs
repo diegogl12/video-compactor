@@ -11,6 +11,7 @@ defmodule VideoCompactor.InterfaceAdapters.Gateways.Clients.VideoManagerTest do
   describe "update_status/2" do
     test "returns :ok for 2xx response" do
       video = %Video{id: "video-123", zip_path: "zip/video-123.zip"}
+
       Tesla
       |> stub(:put, fn _, _, _ -> {:ok, %{status: 200, body: ""}} end)
       |> stub(:client, fn _ -> [] end)
@@ -20,6 +21,7 @@ defmodule VideoCompactor.InterfaceAdapters.Gateways.Clients.VideoManagerTest do
 
     test "returns error for non-2xx response" do
       video = %Video{id: "video-123", zip_path: "zip/video-123.zip"}
+
       Tesla
       |> stub(:put, fn _, _, _ -> {:ok, %{status: 400, body: "Bad Request"}} end)
       |> stub(:client, fn _ -> [] end)
@@ -29,6 +31,7 @@ defmodule VideoCompactor.InterfaceAdapters.Gateways.Clients.VideoManagerTest do
 
     test "returns error for request failure" do
       video = %Video{id: "video-123", zip_path: "zip/video-123.zip"}
+
       Tesla
       |> stub(:put, fn _, _, _ -> {:error, "Network Error"} end)
       |> stub(:client, fn _ -> [] end)

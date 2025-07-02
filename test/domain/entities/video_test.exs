@@ -23,6 +23,7 @@ defmodule VideoCompactor.Domain.Entities.VideoTest do
         status: "COMPACTED",
         extension: "mp4"
       }
+
       assert {:ok, %Video{} = video} = Video.new(attrs)
       assert video.id == "video-123"
       assert video.temp_file_path == "/tmp/video-123.mp4"
