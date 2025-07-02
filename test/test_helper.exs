@@ -1,26 +1,22 @@
 ExUnit.start()
 Application.ensure_all_started(:mimic)
 
-Mox.defmock(MockProductionRepository,
-  for: FoodOrderProducao.Domain.Repositories.ProductionRepositoryBehaviour
-)
-
-Mox.defmock(MockProductGateway,
-  for: FoodOrderProducao.InterfaceAdapters.Gateways.ProductGatewayBehaviour
-)
-
-Mox.defmock(MockOrderGateway,
-  for: FoodOrderProducao.InterfaceAdapters.Gateways.OrderGatewayBehaviour
-)
-
 [
+  ExAws,
+  ExAws.S3,
   Tesla,
-  FoodOrderProducao.Infra.Repo.Mongo,
-  FoodOrderProducao.UseCases.InitializeProduction,
-  FoodOrderProducao.UseCases.UpdateProductionAndOrderStatus,
-  FoodOrderProducao.UseCases.GetProduction,
-  FoodOrderProducao.InterfaceAdapters.Controllers.ProductionController,
-  FoodOrderProducao.InterfaceAdapters.DTOs.EventProductionDTO,
-  FoodOrderProducao.InterfaceAdapters.DTOs.WebProductionDTO
+  FFmpex,
+  VideoCompactor.InterfaceAdapters.Repositories.VideoRepository,
+  VideoCompactor.InterfaceAdapters.Gateways.Clients.VideoManager,
+  VideoCompactor.InterfaceAdapters.Gateways.Clients.S3,
+  VideoCompactor.InterfaceAdapters.Gateways.Clients.Ffmpex,
+  File,
+  VideoCompactor.InterfaceAdapters.Controllers.VideoController,
+  VideoCompactor.InterfaceAdapters.DTOs.WebVideoResponseDTO,
+  VideoCompactor.InterfaceAdapters.DTOs.VideoContentEventDTO,
+  VideoCompactor.UseCases.CompactVideo,
+  VideoCompactor.Infra.Repo.Mongo,
+  VideoCompactor.InterfaceAdapters.Repositories.Schemas.VideoSchema,
+  VideoCompactor.Infra.Web.Controllers.VideoController
 ]
 |> Enum.each(&Mimic.copy(&1))

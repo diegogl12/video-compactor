@@ -11,7 +11,7 @@ create_message:
   	--profile localstack
 
 upload_video:
-	aws s3 cp ./test.mp4 s3://video-compactor/video/video.mp4 \
+	aws s3 cp ./test/test_utils/test_video.mp4 s3://video-compactor/video/video.mp4 \
 	--endpoint-url http://localhost:4566 \
 	--profile localstack \
 	--region us-east-1
