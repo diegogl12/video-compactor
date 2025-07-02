@@ -24,7 +24,10 @@ defmodule VideoCompactor.Infra.Web.Endpoints do
       {:error, error} ->
         conn
         |> put_resp_content_type("application/json")
-        |> send_resp(500, Jason.encode!(%{message: "Error getting video info: #{inspect(error)}"}))
+        |> send_resp(
+          500,
+          Jason.encode!(%{message: "Error getting video info: #{inspect(error)}"})
+        )
     end
   end
 

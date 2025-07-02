@@ -11,10 +11,28 @@ defmodule FoodOrderProducao.InterfaceAdapters.Gateways.Clients.ProdutosTest do
   describe "get_products/1" do
     test "successfully retrieves products with a 2xx response" do
       product_ids = ["prod-1", "prod-2"]
-      response_body = Jason.encode!([
-        %{"id" => "prod-1", "nome" => "Product 1", "tipo" => "Category 1", "preco" => 10.0, "descricao" => "Description 1", "tempoPreparo" => 15, "imagens" => []},
-        %{"id" => "prod-2", "nome" => "Product 2", "tipo" => "Category 2", "preco" => 20.0, "descricao" => "Description 2", "tempoPreparo" => 20, "imagens" => []}
-      ])
+
+      response_body =
+        Jason.encode!([
+          %{
+            "id" => "prod-1",
+            "nome" => "Product 1",
+            "tipo" => "Category 1",
+            "preco" => 10.0,
+            "descricao" => "Description 1",
+            "tempoPreparo" => 15,
+            "imagens" => []
+          },
+          %{
+            "id" => "prod-2",
+            "nome" => "Product 2",
+            "tipo" => "Category 2",
+            "preco" => 20.0,
+            "descricao" => "Description 2",
+            "tempoPreparo" => 20,
+            "imagens" => []
+          }
+        ])
 
       Tesla
       |> stub(:get, fn _, _, _ -> {:ok, %{status: 200, body: response_body}} end)

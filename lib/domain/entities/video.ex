@@ -1,6 +1,6 @@
 defmodule VideoCompactor.Domain.Entities.Video do
   @derive {Jason.Encoder, only: [:id, :temp_file_path, :zip_path, :status, :extension]}
-  defstruct [id: nil, temp_file_path: nil, zip_path: nil, status: nil, extension: nil]
+  defstruct id: nil, temp_file_path: nil, zip_path: nil, status: nil, extension: nil
 
   @type t :: %__MODULE__{
           id: String.t(),
