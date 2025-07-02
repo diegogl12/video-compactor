@@ -31,7 +31,7 @@ defmodule VideoCompactor.InterfaceAdapters.Gateways.Clients.S3 do
 
   @impl true
   def delete_file(_bucket_path) do
-        :ok
+    :ok
   end
 
   defp get_bucket_name do

@@ -1,9 +1,17 @@
 ExUnit.start()
 Application.ensure_all_started(:mimic)
 
-Mox.defmock(MockProductionRepository, for: FoodOrderProducao.Domain.Repositories.ProductionRepositoryBehaviour)
-Mox.defmock(MockProductGateway, for: FoodOrderProducao.InterfaceAdapters.Gateways.ProductGatewayBehaviour)
-Mox.defmock(MockOrderGateway, for: FoodOrderProducao.InterfaceAdapters.Gateways.OrderGatewayBehaviour)
+Mox.defmock(MockProductionRepository,
+  for: FoodOrderProducao.Domain.Repositories.ProductionRepositoryBehaviour
+)
+
+Mox.defmock(MockProductGateway,
+  for: FoodOrderProducao.InterfaceAdapters.Gateways.ProductGatewayBehaviour
+)
+
+Mox.defmock(MockOrderGateway,
+  for: FoodOrderProducao.InterfaceAdapters.Gateways.OrderGatewayBehaviour
+)
 
 [
   Tesla,

@@ -10,12 +10,34 @@ defmodule FoodOrderProducao.InterfaceAdapters.DTOs.WebProductionDTOTest do
 
   describe "from_map/1" do
     test "successfully converts map to DTO" do
-      map = %{"order_id" => "order-123", "product_ids" => ["prod-1", "prod-2"], "products" => ["prod-1", "prod-2"], "created_at" => ~N[2023-10-01 12:00:00], "status" => "pending"}
+      map = %{
+        "order_id" => "order-123",
+        "product_ids" => ["prod-1", "prod-2"],
+        "products" => ["prod-1", "prod-2"],
+        "created_at" => ~N[2023-10-01 12:00:00],
+        "status" => "pending"
+      }
 
       WebProductionDTO
-      |> stub(:from_map, fn _ -> {:ok, %WebProductionDTO{order_id: "order-123", product_ids: ["prod-1", "prod-2"], products: ["prod-1", "prod-2"], created_at: ~N[2023-10-01 12:00:00], status: "pending"}} end)
+      |> stub(:from_map, fn _ ->
+        {:ok,
+         %WebProductionDTO{
+           order_id: "order-123",
+           product_ids: ["prod-1", "prod-2"],
+           products: ["prod-1", "prod-2"],
+           created_at: ~N[2023-10-01 12:00:00],
+           status: "pending"
+         }}
+      end)
 
-      assert {:ok, %WebProductionDTO{order_id: "order-123", product_ids: ["prod-1", "prod-2"], products: ["prod-1", "prod-2"], created_at: ~N[2023-10-01 12:00:00], status: "pending"}} =
+      assert {:ok,
+              %WebProductionDTO{
+                order_id: "order-123",
+                product_ids: ["prod-1", "prod-2"],
+                products: ["prod-1", "prod-2"],
+                created_at: ~N[2023-10-01 12:00:00],
+                status: "pending"
+              }} =
                WebProductionDTO.from_map(map)
     end
 
@@ -25,18 +47,41 @@ defmodule FoodOrderProducao.InterfaceAdapters.DTOs.WebProductionDTOTest do
       WebProductionDTO
       |> stub(:from_map, fn _ -> {:error, "Invalid web production data - unknown fields"} end)
 
-      assert {:error, "Invalid web production data - unknown fields"} = WebProductionDTO.from_map(map)
+      assert {:error, "Invalid web production data - unknown fields"} =
+               WebProductionDTO.from_map(map)
     end
   end
 
   describe "to_domain/1" do
     test "successfully converts DTO to domain entity" do
-      dto = %WebProductionDTO{order_id: "order-123", product_ids: ["prod-1", "prod-2"], products: ["prod-1", "prod-2"], created_at: ~N[2023-10-01 12:00:00], status: "pending"}
+      dto = %WebProductionDTO{
+        order_id: "order-123",
+        product_ids: ["prod-1", "prod-2"],
+        products: ["prod-1", "prod-2"],
+        created_at: ~N[2023-10-01 12:00:00],
+        status: "pending"
+      }
 
       WebProductionDTO
-      |> stub(:to_domain, fn _ -> {:ok, %Production{order_id: "order-123", product_ids: ["prod-1", "prod-2"], products: ["prod-1", "prod-2"], created_at: ~N[2023-10-01 12:00:00], status: "pending"}} end)
+      |> stub(:to_domain, fn _ ->
+        {:ok,
+         %Production{
+           order_id: "order-123",
+           product_ids: ["prod-1", "prod-2"],
+           products: ["prod-1", "prod-2"],
+           created_at: ~N[2023-10-01 12:00:00],
+           status: "pending"
+         }}
+      end)
 
-      assert {:ok, %Production{order_id: "order-123", product_ids: ["prod-1", "prod-2"], products: ["prod-1", "prod-2"], created_at: ~N[2023-10-01 12:00:00], status: "pending"}} =
+      assert {:ok,
+              %Production{
+                order_id: "order-123",
+                product_ids: ["prod-1", "prod-2"],
+                products: ["prod-1", "prod-2"],
+                created_at: ~N[2023-10-01 12:00:00],
+                status: "pending"
+              }} =
                WebProductionDTO.to_domain(dto)
     end
   end

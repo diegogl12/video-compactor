@@ -11,7 +11,13 @@ defmodule FoodOrderProducao.InterfaceAdapters.Repositories.ProductionRepositoryT
 
   describe "create/1" do
     test "successfully creates a production" do
-      production = %Production{order_id: "order-123", product_ids: ["prod-1"], products: [], created_at: ~N[2023-10-01 12:00:00], status: "pending"}
+      production = %Production{
+        order_id: "order-123",
+        product_ids: ["prod-1"],
+        products: [],
+        created_at: ~N[2023-10-01 12:00:00],
+        status: "pending"
+      }
 
       Mongo
       |> stub(:insert, fn _ -> {:ok, %{}} end)
@@ -20,7 +26,13 @@ defmodule FoodOrderProducao.InterfaceAdapters.Repositories.ProductionRepositoryT
     end
 
     test "returns error when creation fails" do
-      production = %Production{order_id: "order-123", product_ids: ["prod-1"], products: [], created_at: ~N[2023-10-01 12:00:00], status: "pending"}
+      production = %Production{
+        order_id: "order-123",
+        product_ids: ["prod-1"],
+        products: [],
+        created_at: ~N[2023-10-01 12:00:00],
+        status: "pending"
+      }
 
       Mongo
       |> stub(:insert, fn _ -> {:error, "Insertion Error"} end)
@@ -31,8 +43,22 @@ defmodule FoodOrderProducao.InterfaceAdapters.Repositories.ProductionRepositoryT
 
   describe "update/1" do
     test "successfully updates a production" do
-      old_production_schema = %{_id: "some-id", order_id: "order-123", product_ids: ["prod-1"], products: [], created_at: ~N[2023-10-01 12:00:00], status: "completed"}
-      new_production = %Production{order_id: "order-123", product_ids: ["prod-1"], products: [], created_at: ~N[2023-10-01 12:00:00], status: "completed"}
+      old_production_schema = %{
+        _id: "some-id",
+        order_id: "order-123",
+        product_ids: ["prod-1"],
+        products: [],
+        created_at: ~N[2023-10-01 12:00:00],
+        status: "completed"
+      }
+
+      new_production = %Production{
+        order_id: "order-123",
+        product_ids: ["prod-1"],
+        products: [],
+        created_at: ~N[2023-10-01 12:00:00],
+        status: "completed"
+      }
 
       Mongo
       |> stub(:get_by, fn _, _ -> old_production_schema end)
@@ -43,7 +69,14 @@ defmodule FoodOrderProducao.InterfaceAdapters.Repositories.ProductionRepositoryT
 
     test "returns error when update fails" do
       old_production_schema = %{_id: "some-id", order_id: "order-123"}
-      new_production = %Production{order_id: "order-123", product_ids: ["prod-1"], products: [], created_at: ~N[2023-10-01 12:00:00], status: "completed"}
+
+      new_production = %Production{
+        order_id: "order-123",
+        product_ids: ["prod-1"],
+        products: [],
+        created_at: ~N[2023-10-01 12:00:00],
+        status: "completed"
+      }
 
       Mongo
       |> stub(:get_by, fn _, _ -> old_production_schema end)
@@ -55,12 +88,19 @@ defmodule FoodOrderProducao.InterfaceAdapters.Repositories.ProductionRepositoryT
 
   describe "get_by_order_id/1" do
     test "successfully retrieves a production by order_id" do
-      production_schema = %{order_id: "order-123", product_ids: ["prod-1"], products: [], created_at: ~N[2023-10-01 12:00:00], status: "pending"}
+      production_schema = %{
+        order_id: "order-123",
+        product_ids: ["prod-1"],
+        products: [],
+        created_at: ~N[2023-10-01 12:00:00],
+        status: "pending"
+      }
 
       Mongo
       |> stub(:get_by, fn _, _ -> production_schema end)
 
-      assert {:ok, %Production{order_id: "order-123"}} = ProductionRepository.get_by_order_id("order-123")
+      assert {:ok, %Production{order_id: "order-123"}} =
+               ProductionRepository.get_by_order_id("order-123")
     end
 
     test "returns error when production not found" do
