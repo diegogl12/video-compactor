@@ -93,7 +93,9 @@ defmodule VideoCompactor.InterfaceAdapters.Repositories.VideoRepositoryTest do
       video_id = "video-123"
 
       Mongo
-      |> stub(:get_by, fn VideoSchema, %{id: id} when id == video_id -> {:error, "Mongo Error"} end)
+      |> stub(:get_by, fn VideoSchema, %{id: id} when id == video_id ->
+        {:error, "Mongo Error"}
+      end)
 
       assert {:error, "Mongo Error"} = VideoRepository.get_by_id(video_id)
     end
