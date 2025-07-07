@@ -75,12 +75,17 @@ defmodule VideoCompactor.UseCases.CompactVideoTest do
     end
 
     test "should return error when video_splitter returns error", %{
-      video: video,
       repository: repository,
       video_manager: video_manager,
       s3_client: s3_client,
       video_splitter: video_splitter
     } do
+      video = %Video{
+        id: "123e4567-e89b-12d3-a456-426614174000",
+        temp_file_path: "video/123e4567-e89b-12d3-a456-426614174000.mp4",
+        extension: "mp4"
+      }
+
       File.mkdir_p("./tmp/")
       s3_client |> stub(:download_file, fn _, _ -> :ok end)
       File |> stub(:mkdir_p, fn _ -> :ok end)
