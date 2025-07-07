@@ -6,7 +6,7 @@
 Este repositório constrói um serviço que faz parte de uma arquitetura de microsserviços.</p>
 
 ## 📊 Code Coverage
-[![Coverage Status](https://coveralls.io/repos/github/diegogl12/food-order-producao/badge.svg?branch=feat/tests)](https://coveralls.io/github/diegogl12/food-order-producao?branch=feat/tests)
+[![Coverage Status](https://coveralls.io/repos/github/diegogl12/video-compactor/badge.svg?branch=workflows)](https://coveralls.io/github/diegogl12/video-compactor?branch=workflows)
 
 ## 🏗️ Arquitetura de Microsserviços
 ![Arquitetura](arquitetura.png?raw=true "Arquitetura")

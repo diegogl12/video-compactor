@@ -6,3 +6,4 @@ tmp/*
 mix.lock
 .DS_Store
 volume/*
+!test/test_utils/*.mp4

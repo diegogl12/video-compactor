@@ -27,7 +27,10 @@ defmodule VideoCompactor.InterfaceAdapters.DTOs.VideoContentEventDTOTest do
   describe "to_domain/1" do
     test "successfully converts DTO to domain entity" do
       dto = %VideoContentEventDTO{video_id: "video-123", path: "some/path", extension: "mp4"}
-      {:ok, %Video{id: id, temp_file_path: path, extension: ext}} = VideoContentEventDTO.to_domain(dto)
+
+      {:ok, %Video{id: id, temp_file_path: path, extension: ext}} =
+        VideoContentEventDTO.to_domain(dto)
+
       assert id == "video-123"
       assert path == "some/path"
       assert ext == "mp4"

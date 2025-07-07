@@ -25,7 +25,11 @@ defmodule VideoCompactor.Infra.Web.EndpointsTest do
       VideoController |> stub(:get_video_info, fn "video-123" -> {:ok, video_info} end)
       conn = conn(:get, "/api/video/info/video-123") |> Endpoints.call(@opts)
       assert conn.status == 200
-      assert Jason.decode!(conn.resp_body) == %{"id" => "video-123", "zip_path" => "zip/video-123.zip"}
+
+      assert Jason.decode!(conn.resp_body) == %{
+               "id" => "video-123",
+               "zip_path" => "zip/video-123.zip"
+             }
     end
 
     test "returns 500 and error message on failure" do
