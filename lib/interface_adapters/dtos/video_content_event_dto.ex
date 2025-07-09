@@ -1,12 +1,13 @@
 defmodule VideoCompactor.InterfaceAdapters.DTOs.VideoContentEventDTO do
   alias VideoCompactor.Domain.Entities.Video
 
-  defstruct [:video_id, :path, :extension]
+  defstruct [:video_id, :path, :extension, :file_name]
 
   @type t :: %__MODULE__{
           video_id: String.t(),
           path: bitstring(),
-          extension: String.t()
+          extension: String.t(),
+          file_name: String.t()
         }
 
   @callback from_map(map()) :: {:ok, t()} | {:error, String.t()}
@@ -14,9 +15,10 @@ defmodule VideoCompactor.InterfaceAdapters.DTOs.VideoContentEventDTO do
     map_with_atoms = atom_map(map)
 
     result = %__MODULE__{
-      video_id: Map.get(map_with_atoms, :video_id),
-      path: Map.get(map_with_atoms, :path),
-      extension: Map.get(map_with_atoms, :extension)
+      video_id: Map.get(map_with_atoms, :Video_Id),
+      path: Map.get(map_with_atoms, :Path),
+      extension: Map.get(map_with_atoms, :Extension),
+      file_name: Map.get(map_with_atoms, :File_Name)
     }
 
     {:ok, result}
@@ -34,7 +36,8 @@ defmodule VideoCompactor.InterfaceAdapters.DTOs.VideoContentEventDTO do
      %Video{
        id: dto.video_id,
        temp_file_path: dto.path,
-       extension: dto.extension
+       extension: dto.extension,
+       file_name: dto.file_name
      }}
   end
 
