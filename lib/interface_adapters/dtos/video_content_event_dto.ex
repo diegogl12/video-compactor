@@ -18,7 +18,7 @@ defmodule VideoCompactor.InterfaceAdapters.DTOs.VideoContentEventDTO do
       video_id: Map.get(map_with_atoms, :Video_Id),
       path: Map.get(map_with_atoms, :Path),
       extension: Map.get(map_with_atoms, :Extension),
-      file_name: Map.get(map_with_atoms, :File_Name)
+      file_name: Map.get(map_with_atoms, :FileName)
     }
 
     {:ok, result}

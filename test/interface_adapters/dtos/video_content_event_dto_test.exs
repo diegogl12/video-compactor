@@ -6,7 +6,7 @@ defmodule VideoCompactor.InterfaceAdapters.DTOs.VideoContentEventDTOTest do
 
   describe "from_map/1" do
     test "successfully converts map to DTO" do
-      map = %{"video_id" => "video-123", "path" => "some/path", "extension" => "mp4"}
+      map = %{"Video_Id" => "video-123", "Path" => "some/path", "Extension" => "mp4"}
       {:ok, dto} = VideoContentEventDTO.from_map(map)
       assert dto.video_id == "video-123"
       assert dto.path == "some/path"
@@ -16,7 +16,7 @@ defmodule VideoCompactor.InterfaceAdapters.DTOs.VideoContentEventDTOTest do
 
   describe "from_json/1" do
     test "successfully converts JSON to DTO" do
-      json = ~s({"video_id": "video-123", "path": "some/path", "extension": "mp4"})
+      json = ~s({"Video_Id": "video-123", "Path": "some/path", "Extension": "mp4"})
       {:ok, dto} = VideoContentEventDTO.from_json(json)
       assert dto.video_id == "video-123"
       assert dto.path == "some/path"
