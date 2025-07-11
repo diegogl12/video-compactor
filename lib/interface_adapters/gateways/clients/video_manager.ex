@@ -3,17 +3,19 @@ defmodule VideoCompactor.InterfaceAdapters.Gateways.Clients.VideoManager do
 
   @impl true
   def update_status(video, status) do
-    client()
-    |> Tesla.put("/video/status/#{video.id}", %{
+    params = [
       status: status,
-      zip_path: video.zip_path
-    })
+      caminhoZip: video.zip_path
+    ]
+
+    client()
+    |> Tesla.put("/api/Videos/status/#{video.id}", %{}, query: params)
     |> case do
       {:ok, %{status: status, body: _body}} when status >= 200 and status < 300 ->
         :ok
 
-      {:ok, %{status: _status, body: body}} ->
-        {:error, body}
+      {:ok, %{status: status, body: body}} ->
+        {:error, "body: #{inspect(body)} status: #{inspect(status)}"}
 
       {:error, error} ->
         {:error, error}

@@ -1,4 +1,4 @@
-message := '{"video_id": "123e4567-e89b-12d3-a456-426614174000", "path": "video/video.mp4", "extension": "mp4"}'
+message := '{"Video_Id": "1", "File_Name": "123e4567-e89b-12d3-a456-426614174000", "Path": "http://localstack:4566/video-compactor/123e4567-e89b-12d3-a456-426614174000.mp4", "Extension": ".mp4"}'
 
 queue_name := video_content
 
@@ -17,7 +17,7 @@ upload_video:
 	--region us-east-1
 
 download_video:
-	aws s3 cp s3://video-compactor/zip/123e4567-e89b-12d3-a456-426614174000.zip ./test.zip \
+	aws s3 cp s3://video-compactor/zip/9.zip ./test.zip \
 	--endpoint-url http://localhost:4566 \
 	--profile localstack \
 	--region us-east-1
