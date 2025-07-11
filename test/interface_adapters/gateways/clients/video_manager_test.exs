@@ -26,7 +26,8 @@ defmodule VideoCompactor.InterfaceAdapters.Gateways.Clients.VideoManagerTest do
       |> stub(:put, fn _, _, _, _ -> {:ok, %{status: 400, body: "Bad Request"}} end)
       |> stub(:client, fn _ -> [] end)
 
-      assert {:error, "body: \"Bad Request\" status: 400"} = VideoManager.update_status(video, "COMPACTED")
+      assert {:error, "body: \"Bad Request\" status: 400"} =
+               VideoManager.update_status(video, "COMPACTED")
     end
 
     test "returns error for request failure" do

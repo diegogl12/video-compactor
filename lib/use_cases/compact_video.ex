@@ -15,7 +15,8 @@ defmodule VideoCompactor.UseCases.CompactVideo do
     temp_zip_local_path = "#{@tmp_local_path}/zip/#{video.id}.zip"
     bucket_zip_path = "#{video.id}.zip"
 
-    bucket_path = String.replace(video.temp_file_path, "http://localstack:4566/video-compactor/", "")
+    bucket_path =
+      String.replace(video.temp_file_path, "http://localstack:4566/video-compactor/", "")
 
     with :ok <- s3_client.download_file(bucket_path, temp_video_local_path),
          :ok <- File.mkdir_p(@tmp_local_path <> "/" <> video.id <> "/"),
